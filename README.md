@@ -20,3 +20,5 @@ SVD collaborative filtering + FastAPI + Streamlit + Docker.
 
 ```bash
 docker-compose up --build
+
+#The user-item matrix is 6.3% complete (100,000 ratings out of 1,586,126 possible pairs)
