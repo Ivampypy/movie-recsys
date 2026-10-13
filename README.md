@@ -4,6 +4,8 @@ RecSys of movies based on dataset MovieLens 100K.
 
 SVD collaborative filtering + FastAPI + Streamlit + Docker.
 
+The user-item matrix is 6.3% complete (100,000 ratings out of 1,586,126 possible pairs)
+
 ## Stack
 
 - Python 3.14
@@ -21,4 +23,4 @@ SVD collaborative filtering + FastAPI + Streamlit + Docker.
 ```bash
 docker-compose up --build
 
-#The user-item matrix is 6.3% complete (100,000 ratings out of 1,586,126 possible pairs)
+
