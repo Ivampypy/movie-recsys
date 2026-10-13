@@ -1,0 +1,39 @@
+# --- Git ---
+.git
+.gitignore
+
+# --- Виртуальные окружения ---
+.venv/
+venv/
+env/
+
+# --- Данные ---
+data/raw/
+data/processed/
+notebooks/
+
+# --- Артефакты ---
+models/*.pkl
+models/*.joblib
+mlruns/
+
+# --- Кэш Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- IDE и ОС ---
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# --- Документация ---
+*.md
+!README.md
+
+# --- Тесты ---
+tests/
