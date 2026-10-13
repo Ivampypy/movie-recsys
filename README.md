@@ -6,7 +6,7 @@ SVD collaborative filtering + FastAPI + Streamlit + Docker.
 
 ## Stack
 
-- Python 3.11
+- Python 3.14
 - pandas, numpy, scikit-learn
 - scikit-surprise (SVD)
 - FastAPI + Pydantic
