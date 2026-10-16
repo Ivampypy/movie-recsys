@@ -6,6 +6,8 @@ SVD collaborative filtering + FastAPI + Streamlit + Docker.
 
 The user-item matrix is 6.3% complete (100,000 ratings out of 1,586,126 possible pairs)
 
+RMSE on baseline ≈ 1.021
+
 ## Stack
 
 - Python 3.14
