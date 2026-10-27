@@ -1,5 +1,6 @@
 import pandas as pd
 from surprise import SVD, Dataset, Reader
+import numpy as np
 
 
 class SVDRecommender:
@@ -38,6 +39,31 @@ class SVDRecommender:
         for movie_id in candidate_movies:
             rate = self.predict(user_id, movie_id)
             predictions.append((movie_id, rate))
+
+        predictions.sort(key=lambda x: x[1], reverse=True)
+
+        return [movie_id for movie_id, rate in predictions[:top_n]]
+
+    def recommend_hybrid(
+        self,
+        user_id: int,
+        top_n: int = 10,
+        candidate_movies: list = None,
+        movie_popularity: dict = None,
+    ) -> list:
+
+        if candidate_movies is None:
+            candidate_movies = list(self.trainset._raw2inner_id_items.keys())
+
+        predictions = []
+        for movie_id in candidate_movies:
+            svd_score = self.predict(user_id, movie_id)
+            if movie_popularity is None:
+                final_score = svd_score
+            else:
+                pop_score = np.log1p(movie_popularity.get(movie_id, 0))
+                final_score = (svd_score * 0.8) + (pop_score * 0.2)
+            predictions.append((movie_id, final_score))
 
         predictions.sort(key=lambda x: x[1], reverse=True)
 
