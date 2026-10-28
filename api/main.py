@@ -22,7 +22,7 @@ def get_status() -> dict:
     return {"status": "ok"}
 
 
-@app.get("recommend/{user_id}", response_model=SVDRecommender)
+@app.get("/recommend/{user_id}", response_model=SVDRecommender)
 def get_recommendations(user_id: int) -> dict:
     recs = model.recommend_hybrid(user_id=user_id, movie_popularity=popularity_dict)
     return {"user_id": user_id, "recommendations": recs}
