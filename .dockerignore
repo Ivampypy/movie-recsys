@@ -13,8 +13,6 @@ data/processed/
 notebooks/
 
 # --- Артефакты ---
-models/*.pkl
-models/*.joblib
 mlruns/
 
 # --- Кэш Python ---
