@@ -57,7 +57,7 @@ with st.expander(" View user's rating history"):
 if btn:
     with st.spinner("Loading..."):
         try:
-            response = requests.get(f"http://127.0.0.1:8000/recommend/{user_id}")
+            response = requests.get(f"http://api:8000/recommend/{user_id}")
             if response.status_code == 200:
                 recs = response.json()["recommendations"]
                 st.subheader("Recommendations for user: ")
