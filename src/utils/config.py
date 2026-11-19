@@ -2,11 +2,15 @@ from pathlib import Path
 
 PROJECT_ROOT=Path(__file__).resolve().parents[2]
 ML_100K=PROJECT_ROOT/"data"/"raw"/"ml-100k"
+EMBS=PROJECT_ROOT/"models"
 
 RATINGS_FILE=ML_100K/"u.data"
 MOVIES_FILE=ML_100K/"u.item"
 USERS_FILE=ML_100K/"u.user"
 GENRES_FILE=ML_100K/"u.genre"
+EMBS_ITEM=PROJECT_ROOT/"models"/"movie_features.pt" 
+EMBS_USER=PROJECT_ROOT/"models"/"user_static_features.pt" 
+
 
 RATING_SCALE=(1,5)
 RANDOM_STATE=42
