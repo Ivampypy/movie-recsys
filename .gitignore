@@ -1,11 +1,10 @@
-# --- Данные и артефакты ---
+
 data/raw/
 data/processed/
 models/*.pkl
 models/*.joblib
 !models/.gitkeep
 
-# --- Python ---
 __pycache__/
 *.py[cod]
 *$py.class
@@ -16,13 +15,12 @@ dist/
 *.egg-info/
 .eggs/
 
-# --- Виртуальные окружения ---
 .venv/
 venv/
 env/
 ENV/
 
-# --- Jupyter ---
+
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
@@ -33,13 +31,12 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
-# --- IDE ---
+
 .idea/
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
 
-# --- Переменные окружения и секреты ---
 .env
 .env.*
 !.env.example
@@ -49,5 +46,6 @@ htmlcov/
 Thumbs.db
 desktop.ini
 
-# --- MLflow / артефакты экспериментов ---
 mlruns/
+
+models/movie_features.pt
