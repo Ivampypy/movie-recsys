@@ -15,13 +15,11 @@ class SVDRecommender:
         Обучает модель на train_df.
         Ожидаемые колонки: user_id, movie_id, rating.
         """
-        # 1. Создай Reader со шкалой оценок (1, 5)
+      
         reader = Reader(rating_scale=(1, 5))
 
-        # 2. Загрузи данные в формат surprise (только 3 колонки: user, item, rating)
         data = Dataset.load_from_df(train_df[["user_id", "movie_id", "rating"]], reader)
 
-        # 3. Преврати в полный trainset (build_full_trainset) и обучи модель
         self.trainset = data.build_full_trainset()
         self.model.fit(self.trainset)
 
