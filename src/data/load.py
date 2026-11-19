@@ -10,6 +10,7 @@ from src.utils.config import (
 )
 
 
+
 def load_ratings(path: Path = RATINGS_FILE) -> pd.DataFrame:
 
     if not path.exists():
@@ -55,6 +56,41 @@ def load_genres(path: Path = GENRES_FILE) -> pd.DataFrame:
 
     return pd.read_csv(path, sep="|", header=None, names=["genre", "genre_id"])
 
+def load_items(path: Path = MOVIES_FILE) -> pd.DataFrame:
+
+    if not path.exists():
+        raise FileNotFoundError(f"This {path} does not exist")
+
+    return pd.read_csv(
+        path,
+        sep='|',
+        encoding='latin-1',
+        header=None,
+        names=
+        ['movie_id',
+        'title',
+        'year',
+        'video_release',
+        'link',
+        'unknown',
+        'Action',
+        'Adventure',
+        'Animation',
+        "Children's",
+        'Comedy',
+        'Crime',
+        'Documentary',
+        'Drama',
+        'Fantasy',
+        'Film-Noir',
+        'Horror',
+        'Musical',
+        'Mystery',
+        'Romance',
+        'Sci-Fi',
+        'Thriller',
+        'War',
+        'Western'])
 
 if __name__ == "__main__":
 
