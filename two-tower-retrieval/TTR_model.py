@@ -5,7 +5,6 @@ sys.path.append("..")
 import torch
 import torch.nn as N
 import torch.nn.functional as F
-from data_split_and_history import prep_hist_n_data
 from src.utils.config import EMBS_ITEM, EMBS_USER
 
 prep_feature_embs = torch.load(EMBS_ITEM, weights_only=True)
