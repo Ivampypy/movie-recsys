@@ -2,12 +2,12 @@
 
 Movie recommendation service built on the MovieLens 100K dataset, centered around a **Two-Tower Retrieval (TTR)** neural model, with SVD as a baseline, FastAPI, Streamlit, and Docker.
 
-![Python](https://shields.io)
-![PyTorch](https://shields.io)
-![FastAPI](https://shields.io)
-![Streamlit](https://shields.io)
-![Docker](https://shields.io)
-![scikit-learn](https://shields.io)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?logo=fastapi)
+![Streamlit](https://img.shields.io/badge/FastAPI-005571?logo=fastapi)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
 
 
 ## Overview
