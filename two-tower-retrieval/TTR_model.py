@@ -75,7 +75,7 @@ class UserTower(N.Module):
 
 
 class TwoTowerRetrieval(N.Module):
-    def __init__(self, hist_embs, prep_us: torch.Tensor, prep_it: torch.Tensor , num_us: int, num_items: int, id_lay_sz: int, lay_sz: int, output_sz: int, hist_dim: int, proj_hist_sz: int, features: int):
+    def __init__(self, prep_us: torch.Tensor, prep_it: torch.Tensor , num_us: int, num_items: int, id_lay_sz: int, lay_sz: int, output_sz: int, hist_dim: int, proj_hist_sz: int, features: int):
         super().__init__()
         self.user_tower = UserTower(prep_us,num_us,id_lay_sz,lay_sz,output_sz,hist_dim,proj_hist_sz)
         self.item_tower=ItemTower(num_items,lay_sz,prep_it,features,output_sz,id_lay_sz)
