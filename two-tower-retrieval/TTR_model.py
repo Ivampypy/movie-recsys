@@ -5,11 +5,6 @@ sys.path.append("..")
 import torch
 import torch.nn as N
 import torch.nn.functional as F
-from src.utils.config import EMBS_ITEM, EMBS_USER
-
-prep_feature_embs = torch.load(EMBS_ITEM, weights_only=True)
-prep_user_embs = torch.load(EMBS_USER,weights_only=True)
-
 
 
 class ItemTower(N.Module):
