@@ -14,7 +14,7 @@ dset=MovieRetrievalDataset(train_data)
 dl=DataLoader(dset, batch_size=64,shuffle=True)
 
 device='cuda'
-num_epochs = 1000
+num_epochs = 100
 lr=1e-3
 num_us=943
 num_items=1682
@@ -29,4 +29,26 @@ model=TwoTowerRetrieval(prep_user_embs,prep_feature_embs,num_us,num_items,id_lay
 
 optimizer=torch.optim.AdamW(model.parameters(), lr=lr)
 
+
+for epoch in range(num_epochs):
+    model.train()
+    total_loss=0.0
+    for _,tuple_ds in enumerate(dl):
+        user_ids=tuple_ds[0].to(device)
+        movies=tuple_ds[1].to(device)
+        history=tuple_ds[2].to(device)
+        optimizer.zero_grad()
+
+        logits=model(user_ids,movies,history)
+        labels = torch.arange(user_ids.shape[0]).to(device)
+        loss=F.cross_entropy(logits,labels)
+
+        loss.backward()
+        optimizer.step()
+
+        total+=loss.item()
+
+    print(f"Epoch: {epoch} | Train_avg_loss: {total_loss/len(dl)}")
+
+        
 
