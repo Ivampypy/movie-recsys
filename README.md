@@ -86,7 +86,7 @@ pip install -r requirements.txt
 - [x] REST API with **FastAPI** and **Pydantic** validation
 - [x] Web interface with **Streamlit**
 - [x] Docker and Docker Compose setup
-- [ ] **Two-Tower Retrieval (TTR):** Completing model training, retrieval evaluation (`Recall@K` / `HitRate@K`), and API integration (`two-tower-retrieval/`)
+- [x] **Two-Tower Retrieval (TTR):** Completing model training, retrieval evaluation (`Recall@K` / `HitRate@K`), and API integration (`two-tower-retrieval/`)
 - [ ] Adding a ranking stage for retrieved candidates
 
 ---
