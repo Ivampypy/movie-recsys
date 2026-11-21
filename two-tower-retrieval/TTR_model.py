@@ -29,7 +29,7 @@ class ItemTower(N.Module):
             N.Linear(self.input_size, lay_sz),
             N.BatchNorm1d(lay_sz),
             N.ReLU(),
-            N.Dropout(0.15),
+            N.Dropout(0.25),
             N.Linear(lay_sz, output_sz),
         )
 
@@ -52,14 +52,15 @@ class UserTower(N.Module):
                     N.Linear(hist_dim,proj_hist_sz),
                     N.BatchNorm1d(proj_hist_sz),
                     N.ReLU(),
-                    N.Dropout(0.15)
+                    N.Dropout(0.2)
+
                 )
         self.input_size=id_lay_sz+prep_user.shape[1]+proj_hist_sz
         self.head=N.Sequential(
             N.Linear(self.input_size, lay_sz),
             N.BatchNorm1d(lay_sz),
             N.ReLU(),
-            N.Dropout(0.15),
+            N.Dropout(0.2),
             N.Linear(lay_sz, output_sz)
         )
     def forward(self, history_embs: torch.Tensor, id_user: torch.Tensor) -> torch.Tensor:
@@ -79,7 +80,7 @@ class TwoTowerRetrieval(N.Module):
         super().__init__()
         self.user_tower = UserTower(prep_us,num_us,id_lay_sz,lay_sz,output_sz,hist_dim,proj_hist_sz)
         self.item_tower=ItemTower(num_items,lay_sz,prep_it,features,output_sz,id_lay_sz)
-        self.temperature =  temperature
+        self.temperature=temperature
 
 
     def forward(self,id_user: torch.Tensor, id_m: torch.Tensor, history_embs: torch.Tensor) -> torch.Tensor:
