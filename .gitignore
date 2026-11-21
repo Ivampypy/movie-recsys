@@ -50,3 +50,4 @@ mlruns/
 
 models/movie_features.pt
 models/user_static_features.pt
+models/TTR_weights.pt 
