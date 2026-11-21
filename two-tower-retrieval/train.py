@@ -12,6 +12,8 @@ from data_split_and_history import MovieRetrievalDataset, prep_hist_n_data
 from torch.utils.data import DataLoader
 from src.evaluation.eval_retrieval import evaluation_retrieval
 
+torch.manual_seed(42)
+
 prep_feature_embs = torch.load(EMBS_ITEM, weights_only=True)
 prep_user_embs = torch.load(EMBS_USER,weights_only=True)
 train_data, test_data =prep_hist_n_data(prep_feature_embs)
@@ -23,7 +25,7 @@ dl_tr=DataLoader(dsettr, batch_size=256//2,shuffle=True)
 dl_test=DataLoader(dsetvl,batch_size=256//2,shuffle=True)
 
 device='cpu'
-num_epochs = 100
+num_epochs = 45
 lr=1e-3
 temperature=0.07
 num_us=943
@@ -39,7 +41,7 @@ model=TwoTowerRetrieval(temperature,prep_user_embs,prep_feature_embs,num_us,num_
 
 optimizer=torch.optim.AdamW(model.parameters(), lr=lr)
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs, eta_min=1e-5)
-if '__name__'=='__main__':
+if __name__=='__main__':
     best_rec=0.0; ndcg = 0.0
     for epoch in range(num_epochs):
         model.train()
