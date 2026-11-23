@@ -54,3 +54,22 @@ class TwoTowerRecommender:
             if rate >= 4:
                 self.user_history[us_id].append(m_id)
             self.user_seen[us_id].add(m_id)
+
+    def recommend(self, us_id: int, top_n: int = 10) -> list[int]:
+        if us_id in self.user_history:
+            past_movies=self.user_history[us_id][-5:]
+            past_movies_idx=[m-1 for m in past_movies]
+            hist_emb=self.prep_it_embs[past_movies_idx,1:].mean(dim=0,keepdim=True)
+            u_vec=self.model.user_tower(hist_emb,torch.tensor([us_id-1],dtype=torch.long))
+            u_vec=u_vec.detach().cpu().numpy().astype('float32')
+            _,inds=self.index.search(u_vec,k=top_n+len(self.user_seen[us_id]))
+            filtered=[m+1 for m in inds[0] if m+1 not in self.user_seen[us_id]]
+            return filtered[:top_n]
+
+
+
+        return self.recommend_cold_start()
+
+    def recommend_cold_start(self):
+        return None
+
