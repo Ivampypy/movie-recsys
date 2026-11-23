@@ -8,5 +8,10 @@ class RecommendationResponse(BaseModel):
 class ColdStartRequesr(BaseModel):
     liked_movies: list[int] = Field(...,min_length=1)
 
+class ColdStartResponse(BaseModel):
+    liked_movies: list[int]
+    recommendations: list[int]
+    
+
 
 
