@@ -16,8 +16,6 @@ prep_user_embs = torch.load(EMBS_USER, weights_only=True)
 
 
 device = "cpu"
-num_epochs = 45
-lr = 1e-3
 temperature = 0.07
 num_us = 943
 num_items = 1682
