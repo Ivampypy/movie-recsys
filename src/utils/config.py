@@ -9,7 +9,8 @@ MOVIES_FILE=ML_100K/"u.item"
 USERS_FILE=ML_100K/"u.user"
 GENRES_FILE=ML_100K/"u.genre"
 EMBS_ITEM=PROJECT_ROOT/"models"/"movie_features.pt" 
-EMBS_USER=PROJECT_ROOT/"models"/"user_static_features.pt" 
+EMBS_USER=PROJECT_ROOT/"models"/"user_static_features.pt"
+INDEX_FILE=EMBS/"movies.index"
 
 
 RATING_SCALE=(1,5)
