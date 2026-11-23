@@ -10,6 +10,8 @@ from src.utils.config import EMBS_ITEM, EMBS_USER, INDEX_FILE, TTR_CONFIG
 import torch
 import faiss
 from collections import defaultdict
+from src.data.load import load_ratings
+import pandas as pd
 
 
 class TwoTowerRecommender:
@@ -35,14 +37,20 @@ class TwoTowerRecommender:
             TTR_CONFIG["proj_hist_sz"],
             self.prep_it_embs.shape[1],
         )
-    
-        self.index=faiss.read_index(str(index_path))
-        self.model.load_state_dict(torch.load(state_dict_path,weights_only=True))
+
+        self.index = faiss.read_index(str(index_path))
+        self.model.load_state_dict(torch.load(state_dict_path, weights_only=True))
 
         self.model.eval()
-        self.user_seen=defaultdict(set)
-        self.user_history=defaultdict(list)
+        self.user_seen = defaultdict(set)
+        self.user_history = defaultdict(list)
 
-    
-
-        
+    def load(self, ratings: pd.DataFrame):
+        ratings = ratings.sort_values(by="timestamp")
+        for ind, row in ratings.iterrows():
+            rate = row["rating"]
+            us_id = row["user_id"]
+            m_id = row["movie_id"]
+            if rate >= 4:
+                self.user_history[us_id].append(m_id)
+            self.user_seen[us_id].add(m_id)
