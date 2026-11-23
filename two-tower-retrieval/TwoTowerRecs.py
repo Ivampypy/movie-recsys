@@ -12,6 +12,7 @@ import faiss
 from collections import defaultdict
 from src.data.load import load_ratings
 import pandas as pd
+import torch.nn.functional as F
 
 
 class TwoTowerRecommender:
@@ -47,6 +48,7 @@ class TwoTowerRecommender:
 
     def load(self, ratings: pd.DataFrame):
         ratings = ratings.sort_values(by="timestamp")
+        self.popular_movies = ratings["movie_id"].value_counts().index.tolist()
         for ind, row in ratings.iterrows():
             rate = row["rating"]
             us_id = row["user_id"]
@@ -71,6 +73,24 @@ class TwoTowerRecommender:
 
         return self.recommend_cold_start()
 
-    def recommend_cold_start(self):
-        None
+    @torch.no_grad()
+    def recommend_cold_start(self, liked_movies: list[int] = None, top_n: int = 10)->list[int]:
+        if liked_movies:
+            liked_idx=[m-1 for m in liked_movies]
+            hist_emb=self.prep_it_embs[liked_idx,1:].mean(dim=0,keepdim=True)
+            v_hist=self.model.user_tower.history_proj(hist_emb)
+            v_id=torch.zeros((1,self.model.user_tower.ids_embs.embedding_dim))
+            v_prep=self.model.user_tower.prep_us_emb.weight.mean(dim=0,keepdim=True)
+            cc_features=torch.cat((v_id,v_hist,v_prep),dim=-1)
+            out=F.normalize(self.model.user_tower.head(cc_features),p=2,dim=-1)
+            u_vec=out.detach().cpu().numpy().astype('float32')
+
+            _,inds=self.index.search(u_vec,k=top_n+len(liked_movies))
+            indices=[int(m)+1 for m in inds[0] if int(m)+1 not in set(liked_movies)]
+            return indices[:top_n]
+            
+
+        return self.popular_movies[:top_n]
+
+        
         
