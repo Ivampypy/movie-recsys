@@ -40,3 +40,4 @@ index=faiss.IndexFlatIP(64)
 index.add(films_vec)
 
 
+faiss.write_index(index, "models/movies.index")
