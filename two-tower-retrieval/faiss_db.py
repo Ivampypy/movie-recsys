@@ -5,7 +5,7 @@ CURRENT_DIR = Path(__file__).resolve().parent
 sys.path.extend([str(ROOT_DIR), str(CURRENT_DIR)])
 
 
-from faiss import *
+import faiss
 from TTR_model import TwoTowerRetrieval
 from src.utils.config import EMBS_ITEM,EMBS,EMBS_USER
 import torch
@@ -35,4 +35,8 @@ model.eval()
 
 films_vec=model.item_tower(torch.arange(num_items))
 films_vec=films_vec.detach().cpu().numpy().astype('float32')
+
+index=faiss.IndexFlatIP(64)
+index.add(films_vec)
+
 
