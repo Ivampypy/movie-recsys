@@ -86,10 +86,21 @@ pip install -r requirements.txt
 - [x] REST API with **FastAPI** and **Pydantic** validation
 - [x] Web interface with **Streamlit**
 - [x] Docker and Docker Compose setup
-- [x] **Two-Tower Retrieval (TTR):** Completing model training, retrieval evaluation (`Recall@K` / `HitRate@K`), and API integration (`two-tower-retrieval/`)
-- [ ] Adding a ranking stage for retrieved candidates
+- [x] **Two-Tower Retrieval (TTR):** Completing model training, retrieval evaluation (`Recall@K` / `HitRate@K`)
+- [x] Offline Benchmark: Two-Tower vs SVD (`Recall@10`, `NDCG@10`)
+- [x] FAISS Vector Index (`IndexFlatIP`) for Sub-Millisecond Candidate Retrieval
+- [ ] FastAPI Inference Endpoints (`/recommend/two-tower/{user_id}` & `/recommend/cold-start`)
+- [ ] Streamlit UI Update (Multi-page: SVD + Two-Tower Cold-Start) & Docker Compose Deployment
 
 ---
+## Benchmark Results (Temporal Split 80/20)
+
+Both models were tested on the same chronological split (first 80% of user ratings for training, last 20% for testing) across all 1,682 movies:
+
+| Model | Recall@10 | NDCG@10 | Key Strength |
+| :--- | :---: | :---: | :--- |
+| **SVD (Baseline)** | `0.0456` | **`0.0662`** | Strong at ranking known items for active users  |
+| **Two-Tower (HF + MLP)** | **`0.0576`** (+26.3%) | `0.0601` | Иetter candidate recall and supports cold-start users  |
 
 ## Limitations
 
