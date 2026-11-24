@@ -11,7 +11,7 @@ Movie recommendation service built on the MovieLens 100K dataset, centered aroun
 
 ## Overview
 
-This project is a movie recommendation web app built on the MovieLens 100K dataset. The core idea of the project is implementing a **Two-Tower Retrieval (TTR)** model, where users and movies are encoded by two separate neural networks into a shared embedding space to retrieve relevant candidates based on embedding similarity.
+This project is a movie recommendation  app built on the MovieLens 100K dataset. The core idea of the project is implementing a **Two-Tower Retrieval (TTR)** model, where users and movies are encoded by two separate neural networks (Towers) into a shared embedding space to retrieve relevant candidates based on embedding similarity.
 
 To set a baseline and build a working end-to-end service first, I started with collaborative filtering (**SVD**), built a REST API with **FastAPI** and a UI with **Streamlit**, and packaged everything in **Docker**.
 
@@ -104,7 +104,6 @@ Both models were tested on the same chronological split (first 80% of user ratin
 ## Limitations
 
 * **Small Dataset (MovieLens 100K):** The dataset only has 100K ratings (943 users and 1,682 movies). It is good enough to build and test the project, though neural models like Two-Tower Retrieval usually work much better on larger datasets.
-- **Cold Start:** The current setup relies mainly on user and movie IDs, so it cannot give good recommendations for brand-new users or movies that were not in the training set.
 - **No Automatic Retraining:** Models are trained offline on static data. If new ratings are added, the model does not update automatically.
 
 ## Contacts
