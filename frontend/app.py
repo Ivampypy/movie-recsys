@@ -21,13 +21,10 @@ def get_ratings() -> pd.DataFrame:
 
 st.title("Movie Recommender")
 st.subheader("SVD Recommendations Page")
-
-with st.sidebar:
-    st.header("Settings")
-    user_id = st.number_input(
-        "Please input user id: ", min_value=1, max_value=943, value=1
-    )
-    btn = st.button("Get recommendations", type="primary")
+user_id = st.number_input(
+    "Please input user id: ", min_value=1, max_value=943, value=1
+)
+btn = st.button("Get recommendations", type="primary")
 
 with st.expander(" View user's rating history"):
     ratings_df = get_ratings()
