@@ -89,7 +89,7 @@ pip install -r requirements.txt
 - [x] Offline Benchmark: Two-Tower vs SVD (`Recall@10`, `NDCG@10`)
 - [x] FAISS Vector Index (`IndexFlatIP`) for Sub-Millisecond Candidate Retrieval
 - [x] FastAPI Inference Endpoints (`/recommend/two-tower/{user_id}` & `/recommend/cold-start`)
-- [ ] Streamlit UI Update (Multi-page: SVD + Two-Tower Cold-Start) & Docker Compose Deployment
+- [x] Streamlit UI Update (Multi-page: SVD + Two-Tower Cold-Start) & Docker Compose Deployment
 
 ---
 ## Benchmark Results (Temporal Split 80/20)
