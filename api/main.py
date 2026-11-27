@@ -1,22 +1,35 @@
+import sys
+sys.path.append('.')
+
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 import joblib as jlb
 from src.models.svd import SVDRecommender
-from api.schemas import RecommendationResponse
-
-app = FastAPI(title="Movie RecSys API")
-
-model = None
-popularity_dict = None
+from api.schemas import RecommendationResponse,ColdStartRequest,ColdStartResponse
+from ttr.TwoTowerRecs import TwoTowerRecommender
+from src.data.load import load_ratings
 
 
-@app.on_event("startup")
-def load_artefact() -> None:
-    global model, popularity_dict
+models={}
+
+
+
+@asynccontextmanager
+
+async def lifespan(app: FastAPI) -> None:
+    global model, popularity_dict,modelcold
     print("Loading model....")
-    model = jlb.load("models/svd_model.pkl")
-    popularity_dict = jlb.load("models/train_popularity.pkl")
+    models["svd"] = jlb.load("models/svd_model.pkl")
+    models["cold"]=TwoTowerRecommender()
+    models['popularity_dict'] = jlb.load("models/train_popularity.pkl")
+    models['cold'].load(load_ratings())
+
     print("Loading completed successfully!")
 
+    models.clear()
+    yield
+
+app=FastAPI(title='Movie RecSys', lifespan=lifespan)
 
 @app.get("/health")
 def get_status() -> dict:
