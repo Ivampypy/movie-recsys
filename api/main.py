@@ -16,7 +16,7 @@ models={}
 
 @asynccontextmanager
 
-async def lifespan(app: FastAPI) -> None:
+async def lifespan(app: FastAPI):
     global model, popularity_dict,modelcold
     print("Loading model....")
     models["svd"] = jlb.load("models/svd_model.pkl")
@@ -40,6 +40,12 @@ def get_status() -> dict:
 def get_recommendations(user_id: int) -> dict:
     recs = models["svd"].recommend_hybrid(user_id=user_id, movie_popularity=models["popularity_dict"])
     return {"user_id": user_id, "recommendations": recs}
+
+@app.get("/recommend/two_tower/{user_id}", response_model=ColdStartResponse)
+def get_recommendations(user_id: int) -> dict:
+    recs=models["cold"].recommend(us_id=user_id)
+    return {"user_id": user_id, "recommendations": recs}
+
 
 
 
