@@ -2,6 +2,9 @@ import sys
 sys.path.append(".")  
 
 
+import os
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
+
 import streamlit as st
 import requests
 import pandas as pd
@@ -41,7 +44,7 @@ with st.expander(" View user's rating history"):
 if btn:
     with st.spinner("Loading..."):
         try:
-            response = requests.get(f"http://api:8000/recommend/{user_id}")
+            response = requests.get(f"{API_URL}/recommend/{user_id}")
             if response.status_code == 200:
                 recs = response.json()["recommendations"]
                 st.subheader("Recommendations for user: ")
