@@ -100,6 +100,12 @@ Both models were tested on the same chronological split (first 80% of user ratin
 | :--- | :---: | :---: | :--- |
 | **SVD (Baseline)** | `0.0456` | **`0.0662`** | Strong at ranking known items for active users  |
 | **Two-Tower (HF + MLP)** | **`0.0576`** (+26.3%) | `0.0601` | Better candidate recall and supports cold-start users  |
+## Interface (Streamlit UI)
+### SVD Recommendations page
+| Ratings of User | Predicted Recommendations|
+| :---: | :---:|
+| ![Rates](pics/img1.png) | ![Recs](pics/image2.png) |
+
 
 ## Limitations
 
