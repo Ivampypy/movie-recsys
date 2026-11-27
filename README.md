@@ -88,7 +88,7 @@ pip install -r requirements.txt
 - [x] **Two-Tower Retrieval (TTR):** Completing model training, retrieval evaluation (`Recall@K` / `HitRate@K`)
 - [x] Offline Benchmark: Two-Tower vs SVD (`Recall@10`, `NDCG@10`)
 - [x] FAISS Vector Index (`IndexFlatIP`) for Sub-Millisecond Candidate Retrieval
-- [ ] FastAPI Inference Endpoints (`/recommend/two-tower/{user_id}` & `/recommend/cold-start`)
+- [x] FastAPI Inference Endpoints (`/recommend/two-tower/{user_id}` & `/recommend/cold-start`)
 - [ ] Streamlit UI Update (Multi-page: SVD + Two-Tower Cold-Start) & Docker Compose Deployment
 
 ---
