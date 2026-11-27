@@ -8,6 +8,7 @@ import requests
 import pandas as pd
 from src.data.load import load_movies, load_ratings
 
+from frontend.Main_Page import API_URL
 
 @st.cache_data
 def get_movies() -> dict:
@@ -39,7 +40,7 @@ with st.expander(" View user's rating history"):
 if btn:
     with st.spinner("Loading..."):
         try:
-            response = requests.get(f"http://api:8000/recommend/two_tower/{user_id}")
+            response = requests.get(f"{API_URL}/recommend/two_tower/{user_id}")
             if response.status_code == 200:
                 recs = response.json()["recommendations"]
                 st.subheader("Recommendations for user: ")
