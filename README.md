@@ -18,7 +18,7 @@ To set a baseline and build a working end-to-end service first, I started with c
 ### Dataset & Modeling Summary
 * **Dataset:** [MovieLens 100K](https://grouplens.org)
 * **Matrix Sparsity:** **6.3%** filled (`100,000` ratings out of `1,586,126` possible user-movie pairs)
-* **Core Model:** Two-Tower Retrieval (TTR) *(main focus, in active development)*
+* **Core Model:** Two-Tower Retrieval (TTR)
 * **Baseline Model:** Collaborative filtering with **SVD** (`scikit-surprise`) — **RMSE ≈ 1.021**
 
 ---
@@ -45,7 +45,7 @@ movie-recsys/
 
 | Part | Tools |
 | :--- | :--- |
-| **Core Model & ML** | `Python 3.11`, `PyTorch` (Two-Tower Retrieval), `NumPy`, `Pandas`, `scikit-learn`, `scikit-surprise` (SVD baseline) |
+| **Core Model & ML** | `Python 3.11`, `PyTorch` (Two-Tower Retrieval), `NumPy`, `Pandas`, `scikit-learn`, `scikit-surprise` (SVD baseline) | `Hugging Face` | `FAISS`|
 | **Backend** | `FastAPI`, `Pydantic`, `Uvicorn` |
 | **Frontend** | `Streamlit` |
 | **Tools & Deployment** | `Docker`, `Docker Compose`|
