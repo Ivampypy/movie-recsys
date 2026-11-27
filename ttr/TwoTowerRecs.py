@@ -6,7 +6,7 @@ CURRENT_DIR = Path(__file__).resolve().parent
 sys.path.extend([str(ROOT_DIR), str(CURRENT_DIR)])
 
 from TTR_model import TwoTowerRetrieval
-from src.utils.config import EMBS_ITEM, EMBS_USER, INDEX_FILE, TTR_CONFIG
+from src.utils.config import EMBS_ITEM, EMBS_USER, INDEX_FILE, TTR_CONFIG, EMBS
 import torch
 import faiss
 from collections import defaultdict
@@ -18,10 +18,10 @@ import torch.nn.functional as F
 class TwoTowerRecommender:
     def __init__(
         self,
-        state_dict_path: Path,
-        index_path: Path,
-        embs_item_path: Path,
-        embs_user_path: Path,
+        state_dict_path: Path = EMBS/"TTR_weights.pt",
+        index_path: Path = INDEX_FILE,
+        embs_item_path: Path = EMBS_ITEM,
+        embs_user_path: Path =  EMBS_USER,
     ):
         self.prep_it_embs = torch.load(embs_item_path, weights_only=True)
         self.prep_us_embs = torch.load(embs_user_path, weights_only=True)
