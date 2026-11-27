@@ -41,11 +41,15 @@ def get_recommendations(user_id: int) -> dict:
     recs = models["svd"].recommend_hybrid(user_id=user_id, movie_popularity=models["popularity_dict"])
     return {"user_id": user_id, "recommendations": recs}
 
-@app.get("/recommend/two_tower/{user_id}", response_model=ColdStartResponse)
+@app.get("/recommend/two_tower/{user_id}", response_model=RecommendationResponse)
 def get_recommendations(user_id: int) -> dict:
     recs=models["cold"].recommend(us_id=user_id)
     return {"user_id": user_id, "recommendations": recs}
 
+@app.get("/recommend/cold_start/", response_model=ColdStartResponse)
+def get_recommendations(payload: ColdStartRequest) -> dict:
+    recs=models["cold"].recommend_cold_start(liked_movies=payload.liked_movies)
+    return {"liked_movies": payload.liked_movies, "recommendations": recs}
 
 
 
