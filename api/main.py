@@ -38,5 +38,8 @@ def get_status() -> dict:
 
 @app.get("/recommend/{user_id}", response_model=RecommendationResponse)
 def get_recommendations(user_id: int) -> dict:
-    recs = model.recommend_hybrid(user_id=user_id, movie_popularity=popularity_dict)
+    recs = models["svd"].recommend_hybrid(user_id=user_id, movie_popularity=models["popularity_dict"])
     return {"user_id": user_id, "recommendations": recs}
+
+
+
