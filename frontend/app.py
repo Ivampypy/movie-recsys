@@ -20,12 +20,7 @@ def get_ratings() -> pd.DataFrame:
 
 
 st.title("Movie Recommender")
-st.markdown(""" 
-    End-to-End Movie Recommender System.
-    SVD recommendations Page.
-    Enter a User ID (from 1 to 943) in the sidebar to request personalized recommendations via the API and explore the user's rating history.
-""")
-
+st.subheader("SVD Recommendations Page")
 
 with st.sidebar:
     st.header("Settings")
