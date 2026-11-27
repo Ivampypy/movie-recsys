@@ -21,16 +21,8 @@ def get_ratings() -> pd.DataFrame:
 
 st.title("Movie Recommender")
 st.markdown(""" 
-    End-to-End Movie Recommender System
-
-    This is a demonstration project showcasing the full ML development lifecycle: from data exploration (EDA) to deployment.
-
-    Model: Hybrid recommender (SVD + Popularity bias).
-
-    Backend: REST API with FastAPI.
-
-    Frontend: Streamlit.
-
+    End-to-End Movie Recommender System.
+    SVD recommendations Page.
     Enter a User ID (from 1 to 943) in the sidebar to request personalized recommendations via the API and explore the user's rating history.
 """)
 
